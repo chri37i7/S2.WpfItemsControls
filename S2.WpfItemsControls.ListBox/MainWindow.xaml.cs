@@ -20,9 +20,13 @@ namespace S2.WpfItemsControls.ListBox
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ViewModel viewModel;
+
         public MainWindow()
         {
             InitializeComponent();
+            viewModel = new ViewModel();
+            DataContext = viewModel;
         }
     }
 }

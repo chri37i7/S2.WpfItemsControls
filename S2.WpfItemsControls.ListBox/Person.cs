@@ -42,7 +42,7 @@ namespace S2.WpfItemsControls.ListBox
             }
             set
             {
-                Lastname = value;
+                lastname = value;
             }
         }
 

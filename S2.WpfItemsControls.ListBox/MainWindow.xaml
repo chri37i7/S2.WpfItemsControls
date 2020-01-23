@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="500">
     <Grid>
-        <ListBox Margin="10,10,315,10" />
+        <ListBox Margin="10,10,315,10" 
+                 ItemsSource="{Binding Persons}"
+                 DisplayMemberPath="FullName"/>
 
     </Grid>
 </Window>
