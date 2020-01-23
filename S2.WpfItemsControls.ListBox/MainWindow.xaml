@@ -5,11 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:S2.WpfItemsControls.ListBox"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="500">
+        Title="MainWindow"
+        Height="450"
+        Width="500">
     <Grid>
-        <ListBox Margin="10,10,315,10" 
-                 ItemsSource="{Binding Persons}"
-                 DisplayMemberPath="Fullname"/>
-
+        <Grid Margin="10,10,10,10">
+            <ListBox x:Name="personsListBox"
+                     Margin="0,0,305,0"
+                     ItemsSource="{Binding Persons}"
+                     SelectedItem="{Binding Path=SelectedPerson}"
+                     DisplayMemberPath="Fullname"
+                     SelectionChanged="PersonsListBox_SelectionChanged" />
+            <TextBlock x:Name="phoneNumber"
+                     HorizontalAlignment="Left"
+                     Margin="270,31,0,0"
+                     Text="{Binding Path=SelectedPerson.PhoneNumber}"
+                     TextWrapping="Wrap"
+                     VerticalAlignment="Top"
+                     Width="110px" />
+            <TextBlock x:Name="email"
+                     HorizontalAlignment="Left"
+                     Margin="260,10,0,0"
+                     Text="{Binding Path=SelectedPerson.Email}"
+                     TextWrapping="Wrap"
+                     VerticalAlignment="Top"
+                     Width="120px" />
+            <TextBlock HorizontalAlignment="Left"
+                       Margin="180,31,0,0"
+                       Text="Telefonnummer:"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Top" />
+            <TextBlock HorizontalAlignment="Left"
+                       Margin="180,10,0,0"
+                       Text="Emailaddress: "
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Top" />
+            <Grid HorizontalAlignment="Center"
+                  VerticalAlignment="Top"
+                  Height="60"
+                  Width="466"
+                  RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="-1" />
+                        <SkewTransform />
+                        <RotateTransform />
+                        <TranslateTransform />
+                    </TransformGroup>
+                </Grid.RenderTransform>
+                <Rectangle HorizontalAlignment="Left"
+                           Height="60"
+                           Stroke="#FFABADB3"
+                           VerticalAlignment="Center"
+                           Width="296"
+                           Margin="10,0,0,0" />
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

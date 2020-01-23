@@ -28,5 +28,12 @@ namespace S2.WpfItemsControls.ListBox
             viewModel = new ViewModel();
             DataContext = viewModel;
         }
+
+        private void PersonsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Person selectedPerson = personsListBox.SelectedItem as Person;
+
+            viewModel.SelectedPerson = selectedPerson;
+        }
     }
 }

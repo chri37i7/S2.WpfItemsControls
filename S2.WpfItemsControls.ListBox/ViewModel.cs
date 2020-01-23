@@ -19,5 +19,7 @@ namespace S2.WpfItemsControls.ListBox
         }
 
         public ObservableCollection<Person> Persons { get; set; }
+
+        public Person SelectedPerson { get; set; }
     }
 }
