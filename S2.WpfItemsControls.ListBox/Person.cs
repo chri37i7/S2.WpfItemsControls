@@ -70,6 +70,6 @@ namespace S2.WpfItemsControls.ListBox
             }
         }
 
-        public string FullName => $"{Firstname} {Lastname}";
+        public string Fullname => $"{Firstname} {Lastname}";
     }
 }
