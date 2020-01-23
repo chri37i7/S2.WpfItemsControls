@@ -12,6 +12,7 @@ namespace S2.WpfItemsControls.ListBox
         private string email;
         private int phoneNumber;
 
+        // Contructor
         public Person(string firstname, string lastname, string email, int phoneNumber)
         {
             Firstname = firstname;
