@@ -51,12 +51,14 @@
                 Grid.Column="0"
                 Grid.Row="8"
                 Margin="10"
-                Content="Gem"
+                Content="Gem Liste"
                 Click="ButtonSaveToFile_Click" />
-        <Button Grid.Column="1"
+        <Button x:Name="buttonEditPerson"
+                Grid.Column="1"
                 Grid.Row="8"
                 Margin="10"
-                Content="Rediger" />
+                Content="Rediger"
+                Click="ButtonEditPerson_Click" />
 
         <!-- Add Person GroupBox -->
         <GroupBox Header="Add Person"
@@ -108,7 +110,8 @@
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="16" />
-                    <TextBox Text="{Binding Path=SelectedPerson.Firstname}"
+                    <TextBox x:Name="textBoxInfo_Firstname"
+                             Text="{Binding Path=SelectedPerson.Firstname}"
                              VerticalAlignment="Center"
                              FontSize="16"
                              IsReadOnly="True"
@@ -119,7 +122,8 @@
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="16" />
-                    <TextBox Text="{Binding Path=SelectedPerson.Lastname}"
+                    <TextBox x:Name="textBoxInfo_Lastname"
+                             Text="{Binding Path=SelectedPerson.Lastname}"
                              VerticalAlignment="Center"
                              FontSize="16"
                              IsReadOnly="True"
@@ -130,7 +134,8 @@
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="16" />
-                    <TextBox Text="{Binding Path=SelectedPerson.Email}"
+                    <TextBox x:Name="textBoxInfo_Email"
+                             Text="{Binding Path=SelectedPerson.Email}"
                              VerticalAlignment="Center"
                              FontSize="16"
                              IsReadOnly="True"
@@ -141,7 +146,8 @@
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="16" />
-                    <TextBox Text="{Binding Path=SelectedPerson.PhoneNumber}"
+                    <TextBox x:Name="textBoxInfo_PhoneNumber"
+                             Text="{Binding Path=SelectedPerson.PhoneNumber}"
                              VerticalAlignment="Center"
                              FontSize="16"
                              IsReadOnly="True"

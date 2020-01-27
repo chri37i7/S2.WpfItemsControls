@@ -24,6 +24,7 @@ namespace S2.WpfItemsControls.ListBox
     public partial class MainWindow : Window
     {
         private ViewModel viewModel;
+        private string buttonState;
 
         public MainWindow()
         {
@@ -78,6 +79,61 @@ namespace S2.WpfItemsControls.ListBox
                     file.WriteLine(line);
                 }
                 file.Close();
+            }
+        }
+
+        private void ButtonEditPerson_Click(object sender, RoutedEventArgs e)
+        {
+            if(buttonState == null)
+            {
+                buttonState = "1";
+
+                buttonEditPerson.Content = "Gem";
+
+                if(personsListBox.SelectedItem != null)
+                {
+                    textBoxInfo_Firstname.IsReadOnly = false;
+                    textBoxInfo_Firstname.BorderThickness = new System.Windows.Thickness(1);
+
+                    textBoxInfo_Lastname.IsReadOnly = false;
+                    textBoxInfo_Lastname.BorderThickness = new System.Windows.Thickness(1);
+
+                    textBoxInfo_Email.IsReadOnly = false;
+                    textBoxInfo_Email.BorderThickness = new System.Windows.Thickness(1);
+
+                    textBoxInfo_PhoneNumber.IsReadOnly = false;
+                    textBoxInfo_PhoneNumber.BorderThickness = new System.Windows.Thickness(1);
+                }
+            }
+            else if(buttonState == "1")
+            {
+                buttonState = null;
+                buttonEditPerson.Content = "Rediger";
+
+                if(viewModel.SelectedPerson != null)
+                {
+                    Person editedPerson = new Person(
+                        textBoxInfo_Firstname.Text,
+                        textBoxInfo_Lastname.Text,
+                        textBoxInfo_Email.Text,
+                        Convert.ToInt32(textBoxInfo_PhoneNumber.Text));
+
+                    viewModel.Persons.Remove(viewModel.SelectedPerson);
+
+                    viewModel.Persons.Add(editedPerson);
+                }
+
+                textBoxInfo_Firstname.IsReadOnly = true;
+                textBoxInfo_Firstname.BorderThickness = new System.Windows.Thickness(0);
+
+                textBoxInfo_Lastname.IsReadOnly = true;
+                textBoxInfo_Lastname.BorderThickness = new System.Windows.Thickness(0);
+
+                textBoxInfo_Email.IsReadOnly = true;
+                textBoxInfo_Email.BorderThickness = new System.Windows.Thickness(0);
+
+                textBoxInfo_PhoneNumber.IsReadOnly = true;
+                textBoxInfo_PhoneNumber.BorderThickness = new System.Windows.Thickness(0);
             }
         }
     }
