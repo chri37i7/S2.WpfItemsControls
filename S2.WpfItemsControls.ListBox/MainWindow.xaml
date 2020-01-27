@@ -11,8 +11,7 @@
         MinHeight="450"
         Width="500"
         MaxWidth="500"
-        MinWidth="500"
-        FontFamily="Comic Sans MS">
+        MinWidth="500">
     <Grid>
         <!-- Window Columns -->
         <Grid.ColumnDefinitions>
