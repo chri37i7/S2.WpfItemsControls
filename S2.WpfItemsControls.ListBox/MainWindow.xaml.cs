@@ -48,5 +48,18 @@ namespace S2.WpfItemsControls.ListBox
                 viewModel.Persons.Add(person);
             }
         }
+
+        private void Button_AddPerson_Click(object sender, RoutedEventArgs e)
+        {
+            int.TryParse(textBox_Phone.Text, out int phone);
+
+            Person person = new Person(
+                $"{textBox_Firstname.Text}",
+                $"{textBox_Lastname.Text}",
+                $"{textBox_Email.Text}", 
+                phone);
+
+            viewModel.Persons.Add(person);
+        }
     }
 }
