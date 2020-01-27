@@ -58,7 +58,6 @@
                 Margin="10"
                 Content="Edit"
                 Click="ButtonEditPerson_Click" />
-
         <Button x:Name="button_DeletePerson"
                 Grid.Column="1"
                 Grid.Row="6"
@@ -71,7 +70,6 @@
                 Margin="10"
                 Content="Import"
                 Click="Button_ImportPersons_Click" />
-
 
         <!-- Add Person GroupBox -->
         <GroupBox Header="Add Person"
