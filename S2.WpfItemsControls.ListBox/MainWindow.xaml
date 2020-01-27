@@ -11,8 +11,10 @@
         MinHeight="450"
         Width="500"
         MaxWidth="500"
-        MinWidth="500">
+        MinWidth="500"
+        FontFamily="Comic Sans MS">
     <Grid>
+        <!-- Window Columns -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -22,6 +24,7 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
+        <!-- Window Rows -->
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -33,22 +36,34 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
+        <!-- Window ListBox -->
         <ListBox x:Name="personsListBox"
-                 Grid.RowSpan="8"
+                 Grid.RowSpan="7"
                  Grid.ColumnSpan="2"
-                 Margin="10"
+                 Margin="10,10,10,0"
                  ItemsSource="{Binding Persons}"
                  SelectedItem="{Binding Path=SelectedPerson}"
                  DisplayMemberPath="Fullname"
                  FontSize="16" />
 
+        <!-- ListBox Buttom Buttons-->
+        <Button x:Name="buttonSaveToFile"
+                Grid.Column="0"
+                Grid.Row="8"
+                Margin="10"
+                Content="Gem"
+                Click="ButtonSaveToFile_Click" />
+        <Button Grid.Column="1"
+                Grid.Row="8"
+                Margin="10"
+                Content="Rediger" />
+
+        <!-- Add Person GroupBox -->
         <GroupBox Header="Add Person"
                   Grid.Column="2"
                   Grid.ColumnSpan="4"
                   Grid.Row="0"
-                  Grid.RowSpan="5"
-                  FontFamily="Comic Sans MS"
-                  Foreground="#FFFF04DD">
+                  Grid.RowSpan="5">
             <StackPanel Margin="3">
                 <TextBlock Text="Firstname"
                            FontSize="16" />
@@ -76,10 +91,11 @@
                         Margin="0,12,0,0"
                         Click="Button_AddPerson_Click"
                         Height="24"
-                        FontSize="16"
-                        Foreground="#FFFF04DD" />
+                        FontSize="16" />
             </StackPanel>
         </GroupBox>
+
+        <!-- Person Info GroupBox -->
         <GroupBox Header="Info"
                   Grid.Column="2"
                   Grid.ColumnSpan="5"

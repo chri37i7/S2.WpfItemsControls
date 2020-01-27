@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace S2.WpfItemsControls.ListBox
 {
@@ -46,6 +49,35 @@ namespace S2.WpfItemsControls.ListBox
                     phone);
 
                 viewModel.Persons.Add(person);
+            }
+        }
+
+        public void ButtonSaveToFile_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog()
+            {
+                Filter = "Text Files(*.txt)|*.txt|All(*.*)|*",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+            };
+
+            if(saveFileDialog.ShowDialog() == true)
+            {
+                List<string> savePersonsToFile = new List<string>();
+
+                foreach(Person person in viewModel.Persons)
+                {
+                    string personToText = $"{person.Firstname},{person.Lastname},{person.Email},{person.PhoneNumber}";
+
+                    savePersonsToFile.Add(personToText);
+
+                }
+
+                StreamWriter file = new StreamWriter(saveFileDialog.FileName);
+                foreach(string line in savePersonsToFile)
+                {
+                    file.WriteLine(line);
+                }
+                file.Close();
             }
         }
     }
