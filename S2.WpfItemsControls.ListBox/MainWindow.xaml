@@ -38,7 +38,7 @@
 
         <!-- Window ListBox -->
         <ListBox x:Name="personsListBox"
-                 Grid.RowSpan="7"
+                 Grid.RowSpan="6"
                  Grid.ColumnSpan="2"
                  Margin="10,10,10,0"
                  ItemsSource="{Binding Persons}"
@@ -51,14 +51,28 @@
                 Grid.Column="0"
                 Grid.Row="8"
                 Margin="10"
-                Content="Gem Liste"
+                Content="Save List"
                 Click="ButtonSaveToFile_Click" />
         <Button x:Name="buttonEditPerson"
                 Grid.Column="1"
                 Grid.Row="8"
                 Margin="10"
-                Content="Rediger"
+                Content="Edit"
                 Click="ButtonEditPerson_Click" />
+
+        <Button x:Name="button_DeletePerson"
+                Grid.Column="1"
+                Grid.Row="6"
+                Margin="10"
+                Content="Delete"
+                Click="Button_DeletePerson_Click" />
+        <Button x:Name="Button_ImportPersons"
+                Grid.Column="0"
+                Grid.Row="6"
+                Margin="10"
+                Content="Import"
+                Click="Button_ImportPersons_Click" />
+
 
         <!-- Add Person GroupBox -->
         <GroupBox Header="Add Person"

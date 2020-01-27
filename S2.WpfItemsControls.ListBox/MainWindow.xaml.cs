@@ -88,7 +88,7 @@ namespace S2.WpfItemsControls.ListBox
             {
                 buttonState = "1";
 
-                buttonEditPerson.Content = "Gem";
+                buttonEditPerson.Content = "Save";
 
                 if(personsListBox.SelectedItem != null)
                 {
@@ -108,21 +108,31 @@ namespace S2.WpfItemsControls.ListBox
             else if(buttonState == "1")
             {
                 buttonState = null;
-                buttonEditPerson.Content = "Rediger";
+                buttonEditPerson.Content = "Edit";
+
+                int.TryParse(textBoxInfo_PhoneNumber.Text, out int phoneNumber);
 
                 if(viewModel.SelectedPerson != null)
                 {
-                    Person editedPerson = new Person(
-                        textBoxInfo_Firstname.Text,
-                        textBoxInfo_Lastname.Text,
-                        textBoxInfo_Email.Text,
-                        Convert.ToInt32(textBoxInfo_PhoneNumber.Text));
+                    if(phoneNumber != 0)
+                    {
 
-                    viewModel.Persons.Remove(viewModel.SelectedPerson);
+                        Person editedPerson = new Person(
+                            textBoxInfo_Firstname.Text,
+                            textBoxInfo_Lastname.Text,
+                            textBoxInfo_Email.Text,
+                            phoneNumber);
 
-                    viewModel.Persons.Add(editedPerson);
+
+                        viewModel.Persons.Remove(viewModel.SelectedPerson);
+
+                        viewModel.Persons.Add(editedPerson);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Indtast venligst et gyldigt telefonnummer", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
-
                 textBoxInfo_Firstname.IsReadOnly = true;
                 textBoxInfo_Firstname.BorderThickness = new System.Windows.Thickness(0);
 
@@ -135,6 +145,16 @@ namespace S2.WpfItemsControls.ListBox
                 textBoxInfo_PhoneNumber.IsReadOnly = true;
                 textBoxInfo_PhoneNumber.BorderThickness = new System.Windows.Thickness(0);
             }
+        }
+
+        private void Button_DeletePerson_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.Persons.Remove(viewModel.SelectedPerson);
+        }
+
+        private void Button_ImportPersons_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
