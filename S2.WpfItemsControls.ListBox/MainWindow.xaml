@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:S2.WpfItemsControls.ListBox"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="ListBox - WPF"
         Height="450"
-        Width="500">
+        MaxHeight="450"
+        MinHeight="450"
+        Width="500"
+        MaxWidth="500"
+        MinWidth="500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
