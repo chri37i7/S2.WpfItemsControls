@@ -29,11 +29,24 @@ namespace S2.WpfItemsControls.ListBox
             DataContext = viewModel;
         }
 
-        private void PersonsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Button_AddPerson_Click(object sender, RoutedEventArgs e)
         {
-            Person selectedPerson = personsListBox.SelectedItem as Person;
+            if(textBox_Firstname.Text == "" || textBox_Lastname.Text == "" || textBox_Email.Text == "" || textBox_Phone.Text == "")
+            {
+                MessageBox.Show("Udfyld venligst felterne", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                int.TryParse(textBox_Phone.Text, out int phone);
 
-            viewModel.SelectedPerson = selectedPerson;
+                Person person = new Person(
+                    textBox_Firstname.Text,
+                    textBox_Lastname.Text,
+                    textBox_Email.Text,
+                    phone);
+
+                viewModel.Persons.Add(person);
+            }
         }
     }
 }
