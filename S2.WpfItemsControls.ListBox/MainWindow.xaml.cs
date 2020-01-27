@@ -132,7 +132,43 @@ namespace S2.WpfItemsControls.ListBox
 
         private void Button_ImportPersons_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog()
+            {
+                Filter = "Text Files(*.txt)|*.txt|All(*.*)|*",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
+            };
 
+            if(openFileDialog.ShowDialog() == true)
+            {
+                using(StreamReader reader = new StreamReader(openFileDialog.FileName))
+                {
+                    while(!reader.EndOfStream)
+                    {
+                        string documentLine;
+                        // Read until end is reached
+                        while((documentLine = reader.ReadLine()) != null)
+                        {
+                            try
+                            {
+                                // Split document lines into array
+                                string[] lineArray = documentLine.Split(",");
+
+                                // TryParse second line to int
+                                int.TryParse(lineArray[3], out int lineArrayInt);
+
+                                // Create film object with array
+                                Person person = new Person(lineArray[0], lineArray[1], lineArray[2], lineArrayInt);
+                                // Add film to list
+                                viewModel.Persons.Add(person);
+                            }
+                            catch(IndexOutOfRangeException)
+                            {
+                                MessageBox.Show("Der opsted en fejl ved indlæsning, check tekstfilen for mellemrum.");
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void TextBoxWriteable()
