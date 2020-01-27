@@ -70,7 +70,6 @@ namespace S2.WpfItemsControls.ListBox
                     string personToText = $"{person.Firstname},{person.Lastname},{person.Email},{person.PhoneNumber}";
 
                     savePersonsToFile.Add(personToText);
-
                 }
 
                 StreamWriter file = new StreamWriter(saveFileDialog.FileName);
@@ -84,6 +83,7 @@ namespace S2.WpfItemsControls.ListBox
 
         private void ButtonEditPerson_Click(object sender, RoutedEventArgs e)
         {
+            // Statements for multi-functional button.
             if(buttonState == null)
             {
                 buttonState = "1";
@@ -92,17 +92,7 @@ namespace S2.WpfItemsControls.ListBox
 
                 if(personsListBox.SelectedItem != null)
                 {
-                    textBoxInfo_Firstname.IsReadOnly = false;
-                    textBoxInfo_Firstname.BorderThickness = new System.Windows.Thickness(1);
-
-                    textBoxInfo_Lastname.IsReadOnly = false;
-                    textBoxInfo_Lastname.BorderThickness = new System.Windows.Thickness(1);
-
-                    textBoxInfo_Email.IsReadOnly = false;
-                    textBoxInfo_Email.BorderThickness = new System.Windows.Thickness(1);
-
-                    textBoxInfo_PhoneNumber.IsReadOnly = false;
-                    textBoxInfo_PhoneNumber.BorderThickness = new System.Windows.Thickness(1);
+                    TextBoxWriteable();
                 }
             }
             else if(buttonState == "1")
@@ -116,13 +106,11 @@ namespace S2.WpfItemsControls.ListBox
                 {
                     if(phoneNumber != 0)
                     {
-
                         Person editedPerson = new Person(
                             textBoxInfo_Firstname.Text,
                             textBoxInfo_Lastname.Text,
                             textBoxInfo_Email.Text,
                             phoneNumber);
-
 
                         viewModel.Persons.Remove(viewModel.SelectedPerson);
 
@@ -133,17 +121,7 @@ namespace S2.WpfItemsControls.ListBox
                         MessageBox.Show("Indtast venligst et gyldigt telefonnummer", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
-                textBoxInfo_Firstname.IsReadOnly = true;
-                textBoxInfo_Firstname.BorderThickness = new System.Windows.Thickness(0);
-
-                textBoxInfo_Lastname.IsReadOnly = true;
-                textBoxInfo_Lastname.BorderThickness = new System.Windows.Thickness(0);
-
-                textBoxInfo_Email.IsReadOnly = true;
-                textBoxInfo_Email.BorderThickness = new System.Windows.Thickness(0);
-
-                textBoxInfo_PhoneNumber.IsReadOnly = true;
-                textBoxInfo_PhoneNumber.BorderThickness = new System.Windows.Thickness(0);
+                TextBoxReadOnly();
             }
         }
 
@@ -155,6 +133,36 @@ namespace S2.WpfItemsControls.ListBox
         private void Button_ImportPersons_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void TextBoxWriteable()
+        {
+            textBoxInfo_Firstname.IsReadOnly = false;
+            textBoxInfo_Firstname.BorderThickness = new System.Windows.Thickness(1);
+
+            textBoxInfo_Lastname.IsReadOnly = false;
+            textBoxInfo_Lastname.BorderThickness = new System.Windows.Thickness(1);
+
+            textBoxInfo_Email.IsReadOnly = false;
+            textBoxInfo_Email.BorderThickness = new System.Windows.Thickness(1);
+
+            textBoxInfo_PhoneNumber.IsReadOnly = false;
+            textBoxInfo_PhoneNumber.BorderThickness = new System.Windows.Thickness(1);
+        }
+
+        private void TextBoxReadOnly()
+        {
+            textBoxInfo_Firstname.IsReadOnly = true;
+            textBoxInfo_Firstname.BorderThickness = new System.Windows.Thickness(0);
+
+            textBoxInfo_Lastname.IsReadOnly = true;
+            textBoxInfo_Lastname.BorderThickness = new System.Windows.Thickness(0);
+
+            textBoxInfo_Email.IsReadOnly = true;
+            textBoxInfo_Email.BorderThickness = new System.Windows.Thickness(0);
+
+            textBoxInfo_PhoneNumber.IsReadOnly = true;
+            textBoxInfo_PhoneNumber.BorderThickness = new System.Windows.Thickness(0);
         }
     }
 }
