@@ -10,11 +10,8 @@
         Width="533.33">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100*"></ColumnDefinition>
-            <ColumnDefinition Width="100*" />
-            <ColumnDefinition Width="100*" />
-            <ColumnDefinition Width="100*" />
-            <ColumnDefinition Width="400*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -32,7 +29,6 @@
                   Grid.Column="0"
                   Grid.Row="0"
                   Grid.RowSpan="7"
-                  Grid.ColumnSpan="4"
                   Margin="2,10,0,1"
                   ItemsSource="{Binding Employees}"
                   SelectedItem="{Binding SelectedEmployee}"
@@ -51,7 +47,7 @@
 
         <!-- Employee Info GroupBox-->
         <GroupBox Header="Medarbejder Info"
-                  Grid.Column="4"
+                  Grid.Column="1"
                   Grid.Row="0"
                   Grid.RowSpan="7">
             <StackPanel>
