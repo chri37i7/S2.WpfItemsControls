@@ -13,8 +13,8 @@ namespace WpfItemsControls.ListView
             employees = new List<Employee>()
             {
                 new Employee("Brian", "Jørgensen", "Afdelingsleder", 250000, new DateTime(2013, 5, 3)),
-                new Employee("Martin", "Fessel", "Lærer", 1000000, new DateTime(2016, 7, 13)),
-                new Employee("Harry", "Hoe", "Pedel", 50, new DateTime(1947, 11, 23))
+                new Employee("Martin", "Fessel", "Lærer", 1000000, new DateTime(2016, 7, 12)),
+                new Employee("Harry", "Hoe", "Pedel", 50, new DateTime(1947, 11, 12))
             };
         }
 

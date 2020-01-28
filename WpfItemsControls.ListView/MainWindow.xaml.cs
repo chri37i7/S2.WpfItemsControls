@@ -29,5 +29,45 @@ namespace WpfItemsControls.ListView
             viewModel = new ViewModel();
             DataContext = viewModel;
         }
+
+        private void ButtonDeleteEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            if(viewModel.SelectedEmployee != null)
+            {
+                viewModel.Employees.Remove(viewModel.SelectedEmployee);
+            }
+            else
+            {
+                MessageBox.Show("Vælg venligst en ansat", "Ingen ansat valgt", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void ButtonNewEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            if(viewModel.SelectedEmployee == null)
+            {
+
+            }
+            else
+            {
+                // Deselect SelectedItem
+                listViewEmployees.SelectedItem = null;
+
+                // Set TextBox BorderThickness
+                textBoxEmployeeFirstname.BorderThickness = new System.Windows.Thickness(1);
+                textBoxEmployeeLastname.BorderThickness = new System.Windows.Thickness(1);
+                textBoxEmployeePosition.BorderThickness = new System.Windows.Thickness(1);
+
+                // Make TextBoxes Writeable
+                textBoxEmployeeFirstname.IsReadOnly = false;
+                textBoxEmployeeLastname.IsReadOnly = false;
+                textBoxEmployeePosition.IsReadOnly = false;
+            }
+        }
+
+        private void ButtonEditEmployee_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
