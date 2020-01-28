@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:WpfItemsControls.ListView"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="450"
-        Width="800">
+        Height="300"
+        Width="533.33">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100*"></ColumnDefinition>
@@ -33,9 +33,10 @@
                   Grid.Row="0"
                   Grid.RowSpan="7"
                   Grid.ColumnSpan="4"
-                  Margin="25,30,25,30"
+                  Margin="2,10,0,1"
                   ItemsSource="{Binding Employees}"
-                  SelectedItem="{Binding SelectedEmployee}">
+                  SelectedItem="{Binding SelectedEmployee}"
+                  SelectionChanged="ListViewEmployees_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Navn"
@@ -51,19 +52,19 @@
         <!-- Employee Info GroupBox-->
         <GroupBox Header="Medarbejder Info"
                   Grid.Column="4"
-                  Grid.Row="1"
-                  Grid.RowSpan="4"
-                  Margin="50,0,50,0">
+                  Grid.Row="0"
+                  Grid.RowSpan="7">
             <StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Height="40">
-                    <Label Content="Employment date:"
+                    <Label Content="Hire date:"
                            FontSize="16"
                            VerticalAlignment="Center"
-                           Width="140" />
+                           Width="82" />
                     <DatePicker x:Name="datePickerEmploymentDate"
                                 FontSize="16"
                                 VerticalAlignment="Center"
+                                BorderThickness="0"
                                 IsEnabled="False"
                                 Text="{Binding SelectedEmployee.EmploymentDate}" />
                 </StackPanel>
@@ -72,11 +73,11 @@
                     <Label Content="Firstname:"
                            FontSize="16"
                            VerticalAlignment="Center"
-                           Width="80" />
+                           Width="82" />
                     <TextBox x:Name="textBoxEmployeeFirstname"
                              FontSize="16"
                              VerticalAlignment="Center"
-                             Width="184"
+                             Width="124"
                              BorderThickness="0"
                              IsReadOnly="True"
                              Text="{Binding SelectedEmployee.Firstname}" />
@@ -86,11 +87,11 @@
                     <Label Content="Lastname:"
                            FontSize="16"
                            VerticalAlignment="Center"
-                           Width="80" />
+                           Width="82" />
                     <TextBox x:Name="textBoxEmployeeLastname"
                              FontSize="16"
                              VerticalAlignment="Center"
-                             Width="184"
+                             Width="124"
                              BorderThickness="0"
                              IsReadOnly="True"
                              Text="{Binding SelectedEmployee.Lastname}" />
@@ -101,38 +102,55 @@
                            FontSize="16"
                            VerticalAlignment="Center"
                            HorizontalContentAlignment="Right"
-                           Width="80" />
+                           Width="82" />
                     <TextBox x:Name="textBoxEmployeePosition"
                              FontSize="16"
                              VerticalAlignment="Center"
-                             Width="184"
+                             Width="124"
                              BorderThickness="0"
                              IsReadOnly="True"
                              Text="{Binding SelectedEmployee.Position}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
+                            Height="40">
+                    <Label Content="Salary:"
+                           FontSize="16"
+                           VerticalAlignment="Center"
+                           HorizontalContentAlignment="Right"
+                           Width="82" />
+                    <TextBox x:Name="textBoxEmployeeSalary"
+                             FontSize="16"
+                             VerticalAlignment="Center"
+                             Width="124"
+                             BorderThickness="0"
+                             IsReadOnly="True"
+                             Text="{Binding SelectedEmployee.Salary}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Center"
-                            Height="50">
-
-                    <Button x:Name="buttonDeleteEmployee"
-                            Margin="0,10,10,5"
-                            Content="Slet"
-                            Width="50"
-                            Click="ButtonDeleteEmployee_Click" />
-
+                            Height="40">
                     <Button x:Name="buttonNewEmployee"
                             Margin="0,10,0,5"
-                            Content="Ny"
+                            Content="New"
                             Width="50"
                             Click="ButtonNewEmployee_Click" />
-
                     <Button x:Name="buttonEditEmployee"
                             Grid.Column="3"
                             Grid.Row="6"
                             Margin="10,10,0,5"
-                            Content="Rediger"
+                            Content="Edit"
                             Width="50"
                             Click="ButtonEditEmployee_Click" />
+                    <Button x:Name="buttonSaveEmployee"
+                            Margin="10,10,0,5"
+                            Content="Save"
+                            Width="50"
+                            Click="ButtonSaveEmployee_Click" />
+                    <Button x:Name="buttonDeleteEmployee"
+                            Margin="10,10,0,5"
+                            Content="Delete"
+                            Width="50"
+                            Click="ButtonDeleteEmployee_Click" />
                 </StackPanel>
             </StackPanel>
         </GroupBox>
