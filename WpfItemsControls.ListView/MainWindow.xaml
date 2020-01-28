@@ -5,30 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfItemsControls.ListView"
         mc:Ignorable="d"
-        Title="MainWindow"
+        Title="WPF - ListView"
         Height="300"
-        Width="533.33">
+        Width="533">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-
         <!-- Employee ListView-->
         <ListView x:Name="listViewEmployees"
                   Grid.Column="0"
-                  Grid.Row="0"
-                  Grid.RowSpan="7"
                   Margin="2,10,0,1"
                   ItemsSource="{Binding Employees}"
                   SelectedItem="{Binding SelectedEmployee}"
@@ -47,9 +35,7 @@
 
         <!-- Employee Info GroupBox-->
         <GroupBox Header="Medarbejder Info"
-                  Grid.Column="1"
-                  Grid.Row="0"
-                  Grid.RowSpan="7">
+                  Grid.Column="1">
             <StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Height="40">
