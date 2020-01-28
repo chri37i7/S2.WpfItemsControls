@@ -118,6 +118,7 @@
                     <TextBlock Text="Email: "
                                FontSize="16"
                                VerticalAlignment="Center"
+                               TextAlignment="Right"
                                Width="75" />
                     <TextBox x:Name="textBoxEmail"
                              FontSize="16"
