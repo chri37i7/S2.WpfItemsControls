@@ -24,7 +24,6 @@ namespace S2.WpfItemsControls.ListBox
     public partial class MainWindow : Window
     {
         private ViewModel viewModel;
-        private string buttonState;
 
         public MainWindow()
         {
@@ -33,22 +32,41 @@ namespace S2.WpfItemsControls.ListBox
             DataContext = viewModel;
         }
 
-        private void Button_AddPerson_Click(object sender, RoutedEventArgs e)
+        private void ButtonSavePerson_Click(object sender, RoutedEventArgs e)
         {
-            if(textBox_Firstname.Text == "" || textBox_Lastname.Text == "" || textBox_Email.Text == "" || textBox_Phone.Text == "")
+            if(viewModel.SelectedPerson == null)
             {
-                MessageBox.Show("Udfyld venligst felterne", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Error);
+                if(textBoxFirstname.Text == "" || textBoxLastname.Text == "" || textBoxEmail.Text == "" || textBoxPhoneNumber.Text == "")
+                {
+                    MessageBox.Show("Udfyld venligst felterne", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    int.TryParse(textBoxPhoneNumber.Text, out int phone);
+
+                    Person person = new Person(
+                        textBoxFirstname.Text,
+                        textBoxLastname.Text,
+                        textBoxEmail.Text,
+                        phone);
+
+                    viewModel.Persons.Add(person);
+
+                    listBoxPersons.SelectedItem = person;
+
+                } 
             }
-            else
+            else if(viewModel.SelectedPerson != null)
             {
-                int.TryParse(textBox_Phone.Text, out int phone);
+                int.TryParse(textBoxPhoneNumber.Text, out int phone);
 
                 Person person = new Person(
-                    textBox_Firstname.Text,
-                    textBox_Lastname.Text,
-                    textBox_Email.Text,
+                    textBoxFirstname.Text,
+                    textBoxLastname.Text,
+                    textBoxEmail.Text,
                     phone);
 
+                viewModel.Persons.Remove(viewModel.SelectedPerson);
                 viewModel.Persons.Add(person);
             }
         }
@@ -81,56 +99,7 @@ namespace S2.WpfItemsControls.ListBox
             }
         }
 
-        private void ButtonEditPerson_Click(object sender, RoutedEventArgs e)
-        {
-            // Statements for multi-functional button.
-            if(buttonState == null)
-            {
-                buttonState = "1";
-
-                buttonEditPerson.Content = "Save";
-
-                if(personsListBox.SelectedItem != null)
-                {
-                    TextBoxWriteable();
-                }
-            }
-            else if(buttonState == "1")
-            {
-                buttonState = null;
-                buttonEditPerson.Content = "Edit";
-
-                int.TryParse(textBoxInfo_PhoneNumber.Text, out int phoneNumber);
-
-                if(viewModel.SelectedPerson != null)
-                {
-                    if(phoneNumber != 0)
-                    {
-                        Person editedPerson = new Person(
-                            textBoxInfo_Firstname.Text,
-                            textBoxInfo_Lastname.Text,
-                            textBoxInfo_Email.Text,
-                            phoneNumber);
-
-                        viewModel.Persons.Remove(viewModel.SelectedPerson);
-
-                        viewModel.Persons.Add(editedPerson);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Indtast venligst et gyldigt telefonnummer", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                }
-                TextBoxReadOnly();
-            }
-        }
-
-        private void Button_DeletePerson_Click(object sender, RoutedEventArgs e)
-        {
-            viewModel.Persons.Remove(viewModel.SelectedPerson);
-        }
-
-        private void Button_ImportPersons_Click(object sender, RoutedEventArgs e)
+        private void ButtonImportPersons_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog()
             {
@@ -169,36 +138,83 @@ namespace S2.WpfItemsControls.ListBox
                     }
                 }
             }
+
         }
 
-        private void TextBoxWriteable()
+        private void ButtonAddPerson_Click(object sender, RoutedEventArgs e)
         {
-            textBoxInfo_Firstname.IsReadOnly = false;
-            textBoxInfo_Firstname.BorderThickness = new System.Windows.Thickness(1);
+            listBoxPersons.SelectedItem = null;
 
-            textBoxInfo_Lastname.IsReadOnly = false;
-            textBoxInfo_Lastname.BorderThickness = new System.Windows.Thickness(1);
+            if(viewModel.SelectedPerson == null)
+            {
+                groupBoxPersonInfo.Margin = new System.Windows.Thickness(25, 25, 25, -25);
 
-            textBoxInfo_Email.IsReadOnly = false;
-            textBoxInfo_Email.BorderThickness = new System.Windows.Thickness(1);
+                textBoxFirstname.IsReadOnly = false;
+                textBoxLastname.IsReadOnly = false;
+                textBoxEmail.IsReadOnly = false;
+                textBoxPhoneNumber.IsReadOnly = false;
 
-            textBoxInfo_PhoneNumber.IsReadOnly = false;
-            textBoxInfo_PhoneNumber.BorderThickness = new System.Windows.Thickness(1);
+                textBoxFirstname.BorderThickness = new System.Windows.Thickness(1);
+                textBoxLastname.BorderThickness = new System.Windows.Thickness(1);
+                textBoxEmail.BorderThickness = new System.Windows.Thickness(1);
+                textBoxPhoneNumber.BorderThickness = new System.Windows.Thickness(1);
+
+                textBoxFirstname.Width = 150;
+                textBoxLastname.Width = 150;
+                textBoxEmail.Width = 150;
+                textBoxPhoneNumber.Width = 112; 
+            }
         }
 
-        private void TextBoxReadOnly()
+        private void ButtonEditPerson_Click(object sender, RoutedEventArgs e)
         {
-            textBoxInfo_Firstname.IsReadOnly = true;
-            textBoxInfo_Firstname.BorderThickness = new System.Windows.Thickness(0);
+            if(viewModel.SelectedPerson != null)
+            {
+                // Reveal the save button
+                groupBoxPersonInfo.Margin = new System.Windows.Thickness(25, 25, 25, -25);
 
-            textBoxInfo_Lastname.IsReadOnly = true;
-            textBoxInfo_Lastname.BorderThickness = new System.Windows.Thickness(0);
+                // Make TextBox Writeable
+                textBoxFirstname.IsReadOnly = false;
+                textBoxLastname.IsReadOnly = false;
+                textBoxEmail.IsReadOnly = false;
+                textBoxPhoneNumber.IsReadOnly = false;
 
-            textBoxInfo_Email.IsReadOnly = true;
-            textBoxInfo_Email.BorderThickness = new System.Windows.Thickness(0);
+                // Make Borderthickness 1px
+                textBoxFirstname.BorderThickness = new System.Windows.Thickness(1);
+                textBoxLastname.BorderThickness = new System.Windows.Thickness(1);
+                textBoxEmail.BorderThickness = new System.Windows.Thickness(1);
+                textBoxPhoneNumber.BorderThickness = new System.Windows.Thickness(1);
 
-            textBoxInfo_PhoneNumber.IsReadOnly = true;
-            textBoxInfo_PhoneNumber.BorderThickness = new System.Windows.Thickness(0);
+                // Change TextBox Width
+                textBoxFirstname.Width = 150;
+                textBoxLastname.Width = 150;
+                textBoxEmail.Width = 150;
+                textBoxPhoneNumber.Width = 112;
+            }
+        }
+
+
+        private void ButtonDeletePerson_Click(object sender, RoutedEventArgs e)
+        {
+            if(viewModel.SelectedPerson != null)
+            {
+                viewModel.Persons.Remove(viewModel.SelectedPerson); 
+            }
+        }
+
+        private void ListBoxPersons_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            groupBoxPersonInfo.Margin = new System.Windows.Thickness(25);
+
+            textBoxFirstname.IsReadOnly = true;
+            textBoxLastname.IsReadOnly = true;
+            textBoxEmail.IsReadOnly = true;
+            textBoxPhoneNumber.IsReadOnly = true;
+
+            textBoxFirstname.BorderThickness = new System.Windows.Thickness(0);
+            textBoxLastname.BorderThickness = new System.Windows.Thickness(0);
+            textBoxEmail.BorderThickness = new System.Windows.Thickness(0);
+            textBoxPhoneNumber.BorderThickness = new System.Windows.Thickness(0);
         }
     }
 }

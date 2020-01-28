@@ -34,21 +34,25 @@
                   Grid.Row="0"
                   Grid.ColumnSpan="3"
                   Grid.RowSpan="7"
-                  Margin="3"
+                  Margin="9"
                   ItemsSource="{Binding Employees}"
                   SelectedItem="{Binding SelectedEmployee}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Navn"
-                                    Width="150"
+                                    Width="155"
                                     DisplayMemberBinding="{Binding Fullname}" />
                     <GridViewColumn Header="Stilling"
-                                    Width="150"
+                                    Width="155"
                                     DisplayMemberBinding="{Binding Position}" />
                 </GridView>
             </ListView.View>
         </ListView>
-        
+
+        <GroupBox Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="4"
+                  Header="Medarbejder Info">
+            
+        </GroupBox>
         
     </Grid>
 </Window>

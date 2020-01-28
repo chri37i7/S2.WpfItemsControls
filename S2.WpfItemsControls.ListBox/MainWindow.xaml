@@ -7,11 +7,7 @@
         mc:Ignorable="d"
         Title="ListBox - WPF"
         Height="450"
-        MaxHeight="450"
-        MinHeight="450"
-        Width="500"
-        MaxWidth="500"
-        MinWidth="500">
+        Width="500">
     <Grid>
         <!-- Window Columns -->
         <Grid.ColumnDefinitions>
@@ -36,14 +32,15 @@
         </Grid.RowDefinitions>
 
         <!-- Window ListBox -->
-        <ListBox x:Name="personsListBox"
-                 Grid.RowSpan="6"
+        <ListBox x:Name="listBoxPersons"
+                 Grid.RowSpan="7"
                  Grid.ColumnSpan="2"
                  Margin="10,10,10,0"
                  ItemsSource="{Binding Persons}"
                  SelectedItem="{Binding Path=SelectedPerson}"
                  DisplayMemberPath="Fullname"
-                 FontSize="16" />
+                 FontSize="16"
+                 SelectionChanged="ListBoxPersons_SelectionChanged" />
 
         <!-- ListBox Buttom Buttons-->
         <Button x:Name="buttonSaveToFile"
@@ -52,118 +49,103 @@
                 Margin="10"
                 Content="Save List"
                 Click="ButtonSaveToFile_Click" />
-        <Button x:Name="buttonEditPerson"
+        <Button x:Name="buttonImportPersons"
                 Grid.Column="1"
-                Grid.Row="8"
-                Margin="10"
-                Content="Edit"
-                Click="ButtonEditPerson_Click" />
-        <Button x:Name="button_DeletePerson"
-                Grid.Column="1"
-                Grid.Row="6"
-                Margin="10"
-                Content="Delete"
-                Click="Button_DeletePerson_Click" />
-        <Button x:Name="Button_ImportPersons"
-                Grid.Column="0"
-                Grid.Row="6"
+                Grid.Row="7"
                 Margin="10"
                 Content="Import"
-                Click="Button_ImportPersons_Click" />
+                Click="ButtonImportPersons_Click" />
 
         <!-- Add Person GroupBox -->
-        <GroupBox Header="Add Person"
+        <GroupBox x:Name="groupBoxPersonInfo"
+                  Header="Person Info"
                   Grid.Column="2"
                   Grid.ColumnSpan="4"
                   Grid.Row="0"
-                  Grid.RowSpan="5">
+                  Grid.RowSpan="6"
+                  Margin="25">
             <StackPanel Margin="3">
-                <TextBlock Text="Firstname"
-                           FontSize="16" />
-                <TextBox x:Name="textBox_Firstname"
-                         Height="25"
-                         FontSize="16">
-                </TextBox>
-                <TextBlock Text="Lastname"
-                           FontSize="16" />
-                <TextBox x:Name="textBox_Lastname"
-                         Height="25"
-                         FontSize="16" />
-                <TextBlock Text="Email"
-                           FontSize="16" />
-                <TextBox x:Name="textBox_Email"
-                         Height="25"
-                         FontSize="16" />
-                <TextBlock Text="Phone number"
-                           FontSize="16" />
-                <TextBox x:Name="textBox_Phone"
-                         Height="25"
-                         FontSize="16" />
-                <Button x:Name="button_AddPerson"
-                        Content="Add Person"
-                        Margin="0,12,0,0"
-                        Click="Button_AddPerson_Click"
-                        Height="24"
-                        FontSize="16" />
-            </StackPanel>
-        </GroupBox>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Height="75">
 
-        <!-- Person Info GroupBox -->
-        <GroupBox Header="Info"
-                  Grid.Column="2"
-                  Grid.ColumnSpan="5"
-                  Grid.Row="5"
-                  Grid.RowSpan="8"
-                  Margin="0,0,0,9">
-            <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Firstname:"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           FontSize="16" />
-                    <TextBox x:Name="textBoxInfo_Firstname"
-                             Text="{Binding Path=SelectedPerson.Firstname}"
-                             VerticalAlignment="Center"
+                    <Button x:Name="buttonAddPerson"
+                            Content="Add"
+                            Height="40"
+                            MinWidth="40"
+                            Margin="0,0,20,0"
+                            Click="ButtonAddPerson_Click" />
+                    <Button x:Name="buttonEditPerson"
+                            Content="Edit"
+                            Height="40"
+                            MinWidth="40"
+                            Click="ButtonEditPerson_Click" />
+                    <Button x:Name="buttonDeletePerson"
+                            Content="Delete"
+                            Height="40"
+                            MinWidth="40"
+                            Margin="20,0,0,0"
+                            Click="ButtonDeletePerson_Click" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Height="40">
+                    <TextBlock Text="Firstname: "
+                               FontSize="16"
+                               VerticalAlignment="Center"
+                               Width="75" />
+                    <TextBox x:Name="textBoxFirstname"
                              FontSize="16"
+                             Text="{Binding SelectedPerson.Firstname}"
+                             VerticalAlignment="Center"
+                             IsReadOnly="True"
+                             BorderThickness="0">
+                    </TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Height="40">
+                    <TextBlock Text="Lastname: "
+                               FontSize="16"
+                               VerticalAlignment="Center"
+                               Width="75" />
+                    <TextBox x:Name="textBoxLastname"
+                             FontSize="16"
+                             Text="{Binding SelectedPerson.Lastname}"
+                             VerticalAlignment="Center"
                              IsReadOnly="True"
                              BorderThickness="0" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Lastname:"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           FontSize="16" />
-                    <TextBox x:Name="textBoxInfo_Lastname"
-                             Text="{Binding Path=SelectedPerson.Lastname}"
-                             VerticalAlignment="Center"
+                <StackPanel Orientation="Horizontal"
+                            Height="40">
+                    <TextBlock Text="Email: "
+                               FontSize="16"
+                               VerticalAlignment="Center"
+                               Width="75" />
+                    <TextBox x:Name="textBoxEmail"
                              FontSize="16"
+                             Text="{Binding SelectedPerson.Email}"
+                             VerticalAlignment="Center"
                              IsReadOnly="True"
                              BorderThickness="0" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Email:"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           FontSize="16" />
-                    <TextBox x:Name="textBoxInfo_Email"
-                             Text="{Binding Path=SelectedPerson.Email}"
-                             VerticalAlignment="Center"
+                <StackPanel Orientation="Horizontal"
+                            Height="40">
+                    <TextBlock Text="Phone number: "
+                               FontSize="16"
+                               VerticalAlignment="Center" />
+                    <TextBox x:Name="textBoxPhoneNumber"
                              FontSize="16"
+                             Text="{Binding SelectedPerson.PhoneNumber}"
+                             VerticalAlignment="Center"
                              IsReadOnly="True"
                              BorderThickness="0" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Phone number:"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           FontSize="16" />
-                    <TextBox x:Name="textBoxInfo_PhoneNumber"
-                             Text="{Binding Path=SelectedPerson.PhoneNumber}"
-                             VerticalAlignment="Center"
-                             FontSize="16"
-                             IsReadOnly="True"
-                             BorderThickness="0" />
-                </StackPanel>
+                <Button x:Name="buttonSavePerson"
+                        Content="Save"
+                        Height="30"
+                        Width="120"
+                        FontSize="16"
+                        Margin="0,12,0,0"
+                        Click="ButtonSavePerson_Click" />
             </StackPanel>
         </GroupBox>
     </Grid>
