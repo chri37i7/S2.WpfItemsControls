@@ -183,7 +183,7 @@ namespace S2.WpfItemsControls.ListBox
             if(viewModel.SelectedPerson == null)
             {
                 // Reveal the save button
-                groupBoxPersonInfo.Margin = new System.Windows.Thickness(25, 25, 25, -25);
+                buttonSavePerson.Opacity = 1;
 
                 // Make TextBox Writeable
                 textBoxFirstname.IsReadOnly = false;
@@ -210,7 +210,7 @@ namespace S2.WpfItemsControls.ListBox
             if(viewModel.SelectedPerson != null)
             {
                 // Reveal the save button
-                groupBoxPersonInfo.Margin = new System.Windows.Thickness(25, 25, 25, -25);
+                buttonSavePerson.Opacity = 1;
 
                 // Make TextBox Writeable
                 textBoxFirstname.IsReadOnly = false;
@@ -235,7 +235,7 @@ namespace S2.WpfItemsControls.ListBox
         private void ListBoxPersons_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Hide the save button
-            groupBoxPersonInfo.Margin = new System.Windows.Thickness(25);
+            buttonSavePerson.Opacity = 0;
 
             // Make TextBox unwriteable
             textBoxFirstname.IsReadOnly = true;
