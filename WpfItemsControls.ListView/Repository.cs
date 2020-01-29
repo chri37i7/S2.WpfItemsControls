@@ -41,7 +41,7 @@ namespace WpfItemsControls.ListView
         private void SaveToFile(Employee employee)
         {
             // Convert employee to correct format used in the text file.
-            string employeeToText = 
+            string employeeToText =
                 $"{employee.Firstname}," +
                 $"{employee.Lastname}," +
                 $"{employee.Position}," +
