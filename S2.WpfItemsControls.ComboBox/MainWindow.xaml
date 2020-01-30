@@ -5,8 +5,209 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:S2.WpfItemsControls.ComboBox"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="WPF - ComboBox"
+        Height="450"
+        Width="800">
     <Grid>
+        <!-- Grid Columns -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!-- Grid Rows -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="177*"></RowDefinition>
+            <RowDefinition Height="40*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!-- Movie ListView -->
+        <ListView Grid.Column="0"
+                  Grid.Row="0"
+                  Margin="5"
+                  FontSize="16">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn x:Name="listViewMovieTitle"
+                                    Header="Title"
+                                    Width="auto" />
+                    <GridViewColumn x:Name="listViewMovieGenre"
+                                    Header="Genre"
+                                    Width="auto" />
+                    <GridViewColumn x:Name="listViewMovieReleaseDate"
+                                    Header="Release Date"
+                                    Width="auto" />
+                    <GridViewColumn x:Name="listViewMovieLeadActor"
+                                    Header="Lead Actor"
+                                    Width="auto" />
+                    <GridViewColumn x:Name="listViewMoviePlaytime"
+                                    Header="Playtime"
+                                    Width="auto" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- GroupBox ListView Controls-->
+        <GroupBox Grid.Column="1"
+                  Grid.Row="0"
+                  Margin="0,0,5,5"
+                  Header="Controls">
+            <StackPanel VerticalAlignment="Top">
+                <StackPanel Orientation="Horizontal"
+                            Height="50">
+                    <Label Content="Movie Title:"
+                           VerticalAlignment="Center"
+                           FontSize="16" />
+                    <TextBox x:Name="textBoxMovieTitle"
+                             Text="The Rise of Skywalker"
+                             VerticalAlignment="Center"
+                             FontSize="16"
+                             BorderThickness="0"
+                             IsReadOnly="True" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Height="50">
+                    <Label Content="Movie Genre:"
+                           VerticalAlignment="Center"
+                           FontSize="16" />
+                    <TextBox x:Name="textBoxMovieGenre"
+                             Text="Fantasy/Science-fiction"
+                             VerticalAlignment="Center"
+                             FontSize="16"
+                             BorderThickness="0"
+                             IsReadOnly="True" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Height="50">
+                    <Label Content="Release Date:"
+                           VerticalAlignment="Center"
+                           FontSize="16" />
+                    <DatePicker x:Name="datePickerMovieReleaseDate"
+                                FontSize="16"
+                                VerticalAlignment="Center"
+                                BorderThickness="0"
+                                IsEnabled="False"
+                                SelectedDate="2019-12-18" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Height="50">
+                    <Label Content="Lead Actor:"
+                           VerticalAlignment="Center"
+                           FontSize="16" />
+                    <TextBox x:Name="textBoxMovieLeadActor"
+                             Text="Daisy Ridley"
+                             VerticalAlignment="Center"
+                             FontSize="16"
+                             BorderThickness="0"
+                             IsReadOnly="True" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Height="50">
+                    <Label Content="Playtime:"
+                           VerticalAlignment="Center"
+                           FontSize="16" />
+                    <TextBox x:Name="textBoxMoviePlaytime"
+                             Text="141 minutes"
+                             VerticalAlignment="Center"
+                             FontSize="16"
+                             BorderThickness="0"
+                             IsReadOnly="True" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="5"
+                            Height="60">
+                    <Button Content="New"
+                            Margin="0,0,5,0"
+                            FontSize="16"
+                            Height="35"
+                            Width="60" />
+                    <Button Content="Edit"
+                            Margin="5,0,5,0"
+                            FontSize="16"
+                            Height="35"
+                            Width="60" />
+                    <Button Content="Save"
+                            Margin="5,0,0,0"
+                            FontSize="16"
+                            Height="35"
+                            Width="60" />
+                    <Button Content="Delete"
+                            Margin="5,0,5,0"
+                            FontSize="16"
+                            Height="35"
+                            Width="60" />
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- GroupBox ListView Import/Export-->
+        <GroupBox Grid.Column="1"
+                  Grid.Row="1"
+                  Margin="0,0,5,5"
+                  Header="File Controls">
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <Button Height="40"
+                            Width="80"
+                            Content="Import File"
+                            Margin="0,0,10,0" />
+
+                    <Button Height="40"
+                            Width="80"
+                            Content="Export File"
+                            Margin="10,0,0,0" />
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- ListView Controls -->
+        <GroupBox Grid.Column="0"
+                  Grid.Row="1"
+                  Margin="5,0,5,5"
+                  Header="Movie Controls">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Movie Genre"
+                           Height="40"
+                           VerticalAlignment="Center"
+                           VerticalContentAlignment="Center"
+                           FontSize="16"
+                           BorderThickness="1"
+                           BorderBrush="#FFACACAC"
+                           Background="#FFE5E5E5" />
+                    <ComboBox x:Name="comboBox"
+                              HorizontalAlignment="Left"
+                              Width="90"
+                              Height="40"
+                              FontSize="16">
+                        <ComboBoxItem Content="Action" />
+                        <ComboBoxItem Content="Sci-fi" />
+                        <ComboBoxItem Content="Fantasy" />
+                        <ComboBoxItem Content="Comedy" />
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="5,0,0,0">
+                    <Label Content="Search Movie"
+                           Height="40"
+                           VerticalAlignment="Center"
+                           VerticalContentAlignment="Center"
+                           FontSize="16"
+                           BorderThickness="1"
+                           BorderBrush="#FFACACAC"
+                           Background="#FFE5E5E5" />
+                    <TextBox Text="The Rise of Skywalker"
+                             Height="40"
+                             VerticalAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             FontSize="16"
+                             BorderThickness="1"
+                             BorderBrush="#FFACACAC" />
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
 
     </Grid>
 </Window>
