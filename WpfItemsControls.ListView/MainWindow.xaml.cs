@@ -132,19 +132,19 @@ namespace WpfItemsControls.ListView
                     {
                         repository.ClearFile();
 
+                        Employee employee = new Employee(
+                            viewModel.SelectedEmployee.Firstname,
+                            viewModel.SelectedEmployee.Lastname,
+                            viewModel.SelectedEmployee.Position,
+                            viewModel.SelectedEmployee.Salary,
+                            viewModel.SelectedEmployee.EmploymentDate);
+
                         viewModel.Employees.Remove(viewModel.SelectedEmployee);
 
                         foreach(Employee addEmployee in viewModel.Employees)
                         {
                             repository.AddToFile(addEmployee);
                         }
-
-                        Employee employee = new Employee(
-                            textBoxEmployeeFirstname.Text,
-                            textBoxEmployeeLastname.Text,
-                            textBoxEmployeePosition.Text,
-                            Convert.ToInt32(textBoxEmployeeSalary.Text),
-                            (datePickerEmploymentDate.SelectedDate.Value));
 
                         repository.AddToFile(employee);
                         viewModel.Employees.Add(employee);
