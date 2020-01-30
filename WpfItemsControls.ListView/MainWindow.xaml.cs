@@ -121,7 +121,7 @@ namespace WpfItemsControls.ListView
                     }
                 }
             }
-            else if(viewModel.SelectedEmployee != null)
+            else if(viewModel.SelectedEmployee != null && datePickerEmploymentDate.IsEnabled == true)
             {
                 if(textBoxEmployeeFirstname.Text == "" || textBoxEmployeeLastname.Text == "" || textBoxEmployeePosition.Text == "" || textBoxEmployeeSalary.Text == "" || datePickerEmploymentDate.SelectedDate == null)
                 {
