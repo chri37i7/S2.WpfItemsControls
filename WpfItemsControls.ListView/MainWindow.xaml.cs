@@ -95,16 +95,26 @@ namespace WpfItemsControls.ListView
                 }
                 else
                 {
-                    Employee employee = new Employee(
-                        textBoxEmployeeFirstname.Text,
-                        textBoxEmployeeLastname.Text,
-                        textBoxEmployeePosition.Text,
-                        Convert.ToInt32(textBoxEmployeeSalary.Text),
-                        (datePickerEmploymentDate.SelectedDate ?? DateTime.Now));
+                    try
+                    {
+                        DateTime selectedDate = datePickerEmploymentDate.SelectedDate ?? DateTime.Now;
 
-                    repository.Add(employee);
-                    viewModel.Employees.Add(employee);
-                    listViewEmployees.SelectedItem = employee;
+                        Employee employee = new Employee(
+                            textBoxEmployeeFirstname.Text,
+                            textBoxEmployeeLastname.Text,
+                            textBoxEmployeePosition.Text,
+                            Convert.ToInt32(textBoxEmployeeSalary.Text),
+                            selectedDate);
+
+                        repository.AddToFile(employee);
+                        viewModel.Employees.Add(employee);
+                        listViewEmployees.SelectedItem = employee;
+                    }
+                    catch(System.FormatException error)
+                    {
+
+                        MessageBox.Show($"{error}", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
             else if(viewModel.SelectedEmployee != null)
@@ -118,26 +128,33 @@ namespace WpfItemsControls.ListView
                 }
                 else
                 {
-                    repository.ClearFile();
-
-                    viewModel.Employees.Remove(viewModel.SelectedEmployee);
-
-                    foreach(Employee addEmployee in viewModel.Employees)
+                    try
                     {
-                        repository.Add(addEmployee);
+                        repository.ClearFile();
+
+                        viewModel.Employees.Remove(viewModel.SelectedEmployee);
+
+                        foreach(Employee addEmployee in viewModel.Employees)
+                        {
+                            repository.AddToFile(addEmployee);
+                        }
+
+                        Employee employee = new Employee(
+                            textBoxEmployeeFirstname.Text,
+                            textBoxEmployeeLastname.Text,
+                            textBoxEmployeePosition.Text,
+                            Convert.ToInt32(textBoxEmployeeSalary.Text),
+                            (datePickerEmploymentDate.SelectedDate.Value));
+
+                        repository.AddToFile(employee);
+                        viewModel.Employees.Add(employee);
+                        listViewEmployees.SelectedItem = employee;
                     }
+                    catch(System.FormatException error)
+                    {
 
-                    Employee employee = new Employee(
-                        "",
-                        "",
-                        "",
-                        0,
-                       (datePickerEmploymentDate.SelectedDate ?? DateTime.Now));
-
-                    repository.Add(employee);
-                    viewModel.Employees.Add(employee);
-                    listViewEmployees.SelectedItem = employee;
-
+                        MessageBox.Show($"{error.Message}", "Error Saving Employee", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
         }
@@ -148,10 +165,11 @@ namespace WpfItemsControls.ListView
             {
                 viewModel.Employees.Remove(viewModel.SelectedEmployee);
 
+                repository.ClearFile();
+
                 foreach(Employee employee in viewModel.Employees)
                 {
-                    repository.ClearFile();
-                    repository.Add(employee);
+                    repository.AddToFile(employee);
                 }
             }
             else

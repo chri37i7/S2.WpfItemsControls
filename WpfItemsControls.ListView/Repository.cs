@@ -23,7 +23,7 @@ namespace WpfItemsControls.ListView
             return employees;
         }
 
-        public void Add(Employee employee)
+        public void AddToFile(Employee employee)
         {
             SaveToFile(employee);
         }
@@ -102,6 +102,10 @@ namespace WpfItemsControls.ListView
                             catch(IndexOutOfRangeException)
                             {
                                 // Catches any empty lines in the file
+                            }
+                            catch(System.ArgumentOutOfRangeException)
+                            {
+                                // Catches error in DateTime formatting
                             }
                         }
                     }
