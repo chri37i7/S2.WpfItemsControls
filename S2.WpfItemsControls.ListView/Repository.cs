@@ -1,10 +1,9 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace WpfItemsControls.ListView
+namespace S2.WpfItemsControls.ListView
 {
     class Repository
     {

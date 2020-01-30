@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 
-namespace WpfItemsControls.ListView
+namespace S2.WpfItemsControls.ListView
 {
     class ViewModel
     {

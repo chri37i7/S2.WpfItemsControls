@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WpfItemsControls.ListView
+namespace S2.WpfItemsControls.ComboBox
 {
     /// <summary>
     /// Interaction logic for App.xaml
