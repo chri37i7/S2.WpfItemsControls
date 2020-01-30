@@ -82,7 +82,7 @@ namespace WpfItemsControls.ListView
             }
             else
             {
-                MessageBox.Show("Vælg en ansat for at redigere.", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Vælg en ansat for at redigere!", "Ingen ansat valgt.", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -92,9 +92,9 @@ namespace WpfItemsControls.ListView
             {
                 if(textBoxEmployeeFirstname.Text == "" || textBoxEmployeeLastname.Text == "" || textBoxEmployeePosition.Text == "" || textBoxEmployeeSalary.Text == "" || datePickerEmploymentDate.SelectedDate == null)
                 {
-                    if(viewModel.SelectedEmployee == null)
+                    if(viewModel.SelectedEmployee == null && datePickerEmploymentDate.IsEnabled == true)
                     {
-                        MessageBox.Show("Udfyld venligst felterne", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Udfyld venligst alle felter", "Manglende felter!", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
                 else
@@ -127,7 +127,7 @@ namespace WpfItemsControls.ListView
                 {
                     if(viewModel.SelectedEmployee == null)
                     {
-                        MessageBox.Show("Udfyld venligst felterne", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Udfyld venligst felterne", "OBS!", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
                 else
@@ -178,7 +178,7 @@ namespace WpfItemsControls.ListView
             }
             else
             {
-                MessageBox.Show("Vælg venligst en ansat", "Ingen ansat valgt", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Vælg venligst en ansat", "Ingen ansat valgt.", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
