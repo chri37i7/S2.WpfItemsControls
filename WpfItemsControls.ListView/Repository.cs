@@ -70,12 +70,12 @@ namespace WpfItemsControls.ListView
                 // Add default Employees to list
                 employees.Add(new Employee("Lars", "Larsen", "Direktør", 297364, DateTime.Now));
                 employees.Add(new Employee("Hans", "Hansen", "Marketingschef", 2863453, DateTime.Now));
-                employees.Add(new Employee("Jens", "Jens", "Salgsdirektør", 297364, DateTime.Now));
+                employees.Add(new Employee("Jens", "Jensens", "Salgsdirektør", 297364, DateTime.Now));
 
                 // Add default employees to file
                 AddToFile(new Employee("Lars", "Larsen", "Direktør", 297364, DateTime.Now));
                 AddToFile(new Employee("Hans", "Hansen", "Marketingschef", 2863453, DateTime.Now));
-                AddToFile(new Employee("Jens", "Jens", "Salgsdirektør", 297364, DateTime.Now));
+                AddToFile(new Employee("Jens", "Jensens", "Salgsdirektør", 297364, DateTime.Now));
             }
             else
             {
