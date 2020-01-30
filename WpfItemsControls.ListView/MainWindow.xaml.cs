@@ -35,7 +35,7 @@ namespace WpfItemsControls.ListView
         {
             if(textBoxEmployeeFirstname.IsReadOnly != true)
             {
-                MessageBox.Show("Husk at tryk gem.", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Husk at gemme dine ændringer", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
@@ -79,6 +79,10 @@ namespace WpfItemsControls.ListView
 
                 // Enable DatePicker
                 datePickerEmploymentDate.IsEnabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Vælg en ansat for at redigere.", "Fejl!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
