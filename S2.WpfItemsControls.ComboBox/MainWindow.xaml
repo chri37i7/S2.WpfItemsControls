@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="WPF - ComboBox"
         Height="450"
-        Width="800">
+        Width="800"
+        Background="#ecf0f1">
     <Grid>
         <!-- Grid Columns -->
         <Grid.ColumnDefinitions>
@@ -25,7 +26,9 @@
         <ListView Grid.Column="0"
                   Grid.Row="0"
                   Margin="5"
-                  FontSize="16">
+                  FontSize="16"
+                  BorderBrush="#bdc3c7"
+                  Background="#FFFFFFFF">
             <ListView.View>
                 <GridView>
                     <GridViewColumn x:Name="listViewMovieTitle"
@@ -51,7 +54,9 @@
         <GroupBox Grid.Column="1"
                   Grid.Row="0"
                   Margin="0,0,5,5"
-                  Header="Controls">
+                  Header="Editing Controls"
+                  BorderBrush="#bdc3c7"
+                  Background="#FFFFFFFF">
             <StackPanel VerticalAlignment="Top">
                 <StackPanel Orientation="Horizontal"
                             Height="50">
@@ -116,26 +121,38 @@
                 <StackPanel Orientation="Horizontal"
                             Margin="5"
                             Height="60">
-                    <Button Content="New"
+                    <Button x:Name="buttonNewMovie"
+                            Content="New"
                             Margin="0,0,5,0"
                             FontSize="16"
                             Height="35"
-                            Width="60" />
-                    <Button Content="Edit"
+                            Width="60"
+                            Background="#f1f2f6"
+                            BorderBrush="#747d8c" />
+                    <Button x:Name="buttonEditMovie"
+                            Content="Edit"
                             Margin="5,0,5,0"
                             FontSize="16"
                             Height="35"
-                            Width="60" />
-                    <Button Content="Save"
+                            Width="60"
+                            Background="#f1f2f6"
+                            BorderBrush="#747d8c" />
+                    <Button x:Name="buttonSaveMovie"
+                            Content="Save"
                             Margin="5,0,0,0"
                             FontSize="16"
                             Height="35"
-                            Width="60" />
-                    <Button Content="Delete"
+                            Width="60"
+                            Background="#f1f2f6"
+                            BorderBrush="#747d8c" />
+                    <Button x:Name="buttonDeleteMovie"
+                            Content="Delete"
                             Margin="5,0,5,0"
                             FontSize="16"
                             Height="35"
-                            Width="60" />
+                            Width="60"
+                            Background="#f1f2f6"
+                            BorderBrush="#747d8c" />
                 </StackPanel>
             </StackPanel>
         </GroupBox>
@@ -144,20 +161,30 @@
         <GroupBox Grid.Column="1"
                   Grid.Row="1"
                   Margin="0,0,5,5"
-                  Header="File Controls">
+                  Header="File Controls"
+                  BorderBrush="#bdc3c7"
+                  Background="#FFFFFFFF">
             <StackPanel Orientation="Horizontal"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
-                    <Button Height="40"
-                            Width="80"
+                    <Button x:Name="buttonImportMovies"
+                            Height="40"
+                            Width="85"
+                            FontSize="16"
                             Content="Import File"
-                            Margin="0,0,10,0" />
+                            Margin="0,0,10,0"
+                            Background="#f1f2f6"
+                            BorderBrush="#747d8c" />
 
-                    <Button Height="40"
-                            Width="80"
+                    <Button x:Name="buttonExportMovies"
+                            Height="40"
+                            Width="85"
+                            FontSize="16"
                             Content="Export File"
-                            Margin="10,0,0,0" />
+                            Margin="10,0,0,0"
+                            Background="#f1f2f6"
+                            BorderBrush="#747d8c" />
                 </StackPanel>
             </StackPanel>
         </GroupBox>
@@ -166,7 +193,9 @@
         <GroupBox Grid.Column="0"
                   Grid.Row="1"
                   Margin="5,0,5,5"
-                  Header="Movie Controls">
+                  Header="Movie Selection Controls"
+                  BorderBrush="#bdc3c7"
+                  Background="#FFFFFFFF">
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Movie Genre"
@@ -177,11 +206,12 @@
                            BorderThickness="1"
                            BorderBrush="#FFACACAC"
                            Background="#FFE5E5E5" />
-                    <ComboBox x:Name="comboBox"
+                    <ComboBox x:Name="comboBoxMovieGenre"
                               HorizontalAlignment="Left"
                               Width="90"
                               Height="40"
-                              FontSize="16">
+                              FontSize="16"
+                             >
                         <ComboBoxItem Content="Action" />
                         <ComboBoxItem Content="Sci-fi" />
                         <ComboBoxItem Content="Fantasy" />
@@ -190,21 +220,25 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Margin="5,0,0,0">
-                    <Label Content="Search Movie"
-                           Height="40"
-                           VerticalAlignment="Center"
-                           VerticalContentAlignment="Center"
-                           FontSize="16"
-                           BorderThickness="1"
-                           BorderBrush="#FFACACAC"
-                           Background="#FFE5E5E5" />
-                    <TextBox Text="The Rise of Skywalker"
+                    <Button x:Name="buttonSearchMovie"
+                            Content="Search Movie"
+                            Height="40"
+                            Width="105"
+                            VerticalAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            FontSize="16"
+                            BorderThickness="1"
+                            BorderBrush="#747d8c"
+                            Background="#f1f2f6" />
+                    <TextBox x:Name="textBoxSearchMovie"
+                             Text="The Rise of Skywalker"
                              Height="40"
+                             Width="165"
                              VerticalAlignment="Center"
                              VerticalContentAlignment="Center"
                              FontSize="16"
                              BorderThickness="1"
-                             BorderBrush="#FFACACAC" />
+                             BorderBrush="#747d8c" />
                 </StackPanel>
             </StackPanel>
         </GroupBox>

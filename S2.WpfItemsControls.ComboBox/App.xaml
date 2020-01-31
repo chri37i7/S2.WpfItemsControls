@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:S2.WpfItemsControls.ComboBox"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
     </Application.Resources>
 </Application>
