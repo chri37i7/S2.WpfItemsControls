@@ -41,6 +41,7 @@ namespace S2.WpfItemsControls.ComboBox
                 textBoxMovieGenre.BorderThickness = new System.Windows.Thickness(1);
                 textBoxMovieLeadActor.BorderThickness = new System.Windows.Thickness(1);
                 textBoxMoviePlaytime.BorderThickness = new System.Windows.Thickness(1);
+                datePickerMovieReleaseDate.BorderThickness = new System.Windows.Thickness(1);
 
                 // Enable TextBoxes & DatePicker
                 textBoxMovieTitle.IsReadOnly = false;
@@ -48,31 +49,36 @@ namespace S2.WpfItemsControls.ComboBox
                 textBoxMovieLeadActor.IsReadOnly = false;
                 textBoxMoviePlaytime.IsReadOnly = false;
                 datePickerMovieReleaseDate.IsEnabled = true;
+
+                // Show TextBox
+                textBoxMinutes.Opacity = 1;
             }
         }
 
         private void ButtonNewMovie_Click(object sender, RoutedEventArgs e)
         {
-            if(viewModel.SelectedMovie != null)
-            {
-                listViewMovies.SelectedItem = null;
+            // Deselect SelectedMovie
+            listViewMovies.SelectedItem = null;
 
-                // Change border thickness on TextBoxes
-                textBoxMovieTitle.BorderThickness = new System.Windows.Thickness(1);
-                textBoxMovieGenre.BorderThickness = new System.Windows.Thickness(1);
-                textBoxMovieLeadActor.BorderThickness = new System.Windows.Thickness(1);
-                textBoxMoviePlaytime.BorderThickness = new System.Windows.Thickness(1);
+            // Change border thickness on TextBoxes
+            textBoxMovieTitle.BorderThickness = new System.Windows.Thickness(1);
+            textBoxMovieGenre.BorderThickness = new System.Windows.Thickness(1);
+            textBoxMovieLeadActor.BorderThickness = new System.Windows.Thickness(1);
+            textBoxMoviePlaytime.BorderThickness = new System.Windows.Thickness(1);
+            datePickerMovieReleaseDate.BorderThickness = new System.Windows.Thickness(1);
 
-                // Enable TextBoxes & DatePicker
-                textBoxMovieTitle.IsReadOnly = false;
-                textBoxMovieGenre.IsReadOnly = false;
-                textBoxMovieLeadActor.IsReadOnly = false;
-                textBoxMoviePlaytime.IsReadOnly = false;
-                datePickerMovieReleaseDate.IsEnabled = true;
-            }
+            // Enable TextBoxes & DatePicker
+            textBoxMovieTitle.IsReadOnly = false;
+            textBoxMovieGenre.IsReadOnly = false;
+            textBoxMovieLeadActor.IsReadOnly = false;
+            textBoxMoviePlaytime.IsReadOnly = false;
+            datePickerMovieReleaseDate.IsEnabled = true;
+
+            // Show TextBox
+            textBoxMinutes.Opacity = 1;
         }
 
-        private void listViewMovies_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListViewMovies_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(viewModel.SelectedMovie != null)
             {
@@ -81,6 +87,7 @@ namespace S2.WpfItemsControls.ComboBox
                 textBoxMovieGenre.BorderThickness = new System.Windows.Thickness(0);
                 textBoxMovieLeadActor.BorderThickness = new System.Windows.Thickness(0);
                 textBoxMoviePlaytime.BorderThickness = new System.Windows.Thickness(0);
+                datePickerMovieReleaseDate.BorderThickness = new System.Windows.Thickness(0);
 
                 // Enable TextBoxes & DatePicker
                 textBoxMovieTitle.IsReadOnly = true;
@@ -88,7 +95,15 @@ namespace S2.WpfItemsControls.ComboBox
                 textBoxMovieLeadActor.IsReadOnly = true;
                 textBoxMoviePlaytime.IsReadOnly = true;
                 datePickerMovieReleaseDate.IsEnabled = false;
+
+                // Hide TextBox
+                textBoxMinutes.Opacity = 0;
             }
+        }
+
+        private void ButtonDeleteMovie_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.Movies.Remove(viewModel.SelectedMovie);
         }
     }
 }

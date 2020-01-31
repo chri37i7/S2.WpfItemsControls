@@ -32,7 +32,7 @@
                   Background="#FFFFFFFF"
                   ItemsSource="{Binding Movies}"
                   SelectedItem="{Binding SelectedMovie}"
-                  SelectionChanged="listViewMovies_SelectionChanged">
+                  SelectionChanged="ListViewMovies_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn x:Name="listViewMovieTitle"
@@ -76,6 +76,7 @@
                              Text="{Binding SelectedMovie.Title, Mode=OneWay}"
                              VerticalAlignment="Center"
                              FontSize="16"
+                             MaxWidth="180"
                              MinWidth="80"
                              BorderThickness="0"
                              IsReadOnly="True" />
@@ -89,6 +90,7 @@
                              Text="{Binding SelectedMovie.Genre, Mode=OneWay}"
                              VerticalAlignment="Center"
                              FontSize="16"
+                             MaxWidth="167"
                              MinWidth="80"
                              BorderThickness="0"
                              IsReadOnly="True" />
@@ -114,6 +116,7 @@
                              Text="{Binding SelectedMovie.LeadActor}"
                              VerticalAlignment="Center"
                              FontSize="16"
+                             MaxWidth="180"
                              MinWidth="80"
                              BorderThickness="0"
                              IsReadOnly="True" />
@@ -126,14 +129,17 @@
                     <TextBox x:Name="textBoxMoviePlaytime"
                              Text="{Binding SelectedMovie.Playtime}"
                              VerticalAlignment="Center"
+                             TextAlignment="Center"
                              FontSize="16"
-                             MinWidth="80"
+                             Width="50"
                              BorderThickness="0"
                              IsReadOnly="True" />
-                    <TextBlock Text="Minutes"
+                    <TextBlock x:Name="textBoxMinutes"
+                               Text="(Minutes)"
                                VerticalAlignment="Center"
                                FontSize="16"
-                               Opacity="0" />
+                               Opacity="0" 
+                               Margin="3,0,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Margin="5"
@@ -171,7 +177,8 @@
                             Height="35"
                             Width="60"
                             Background="#f1f2f6"
-                            BorderBrush="#747d8c" />
+                            BorderBrush="#747d8c"
+                            Click="ButtonDeleteMovie_Click" />
                 </StackPanel>
             </StackPanel>
         </GroupBox>
