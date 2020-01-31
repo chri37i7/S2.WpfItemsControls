@@ -23,29 +23,38 @@
         </Grid.RowDefinitions>
 
         <!-- Movie ListView -->
-        <ListView Grid.Column="0"
+        <ListView x:Name="listViewMovies"
+                  Grid.Column="0"
                   Grid.Row="0"
                   Margin="5"
                   FontSize="16"
                   BorderBrush="#bdc3c7"
-                  Background="#FFFFFFFF">
+                  Background="#FFFFFFFF"
+                  ItemsSource="{Binding Movies}"
+                  SelectedItem="{Binding SelectedMovie}"
+                  SelectionChanged="listViewMovies_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn x:Name="listViewMovieTitle"
                                     Header="Title"
-                                    Width="auto" />
+                                    Width="auto"
+                                    DisplayMemberBinding="{Binding Title}" />
                     <GridViewColumn x:Name="listViewMovieGenre"
                                     Header="Genre"
-                                    Width="auto" />
+                                    Width="auto"
+                                    DisplayMemberBinding="{Binding Genre}" />
                     <GridViewColumn x:Name="listViewMovieReleaseDate"
                                     Header="Release Date"
-                                    Width="auto" />
+                                    Width="auto"
+                                    DisplayMemberBinding="{Binding ReleaseDate}" />
                     <GridViewColumn x:Name="listViewMovieLeadActor"
                                     Header="Lead Actor"
-                                    Width="auto" />
+                                    Width="auto"
+                                    DisplayMemberBinding="{Binding LeadActor}" />
                     <GridViewColumn x:Name="listViewMoviePlaytime"
                                     Header="Playtime"
-                                    Width="auto" />
+                                    Width="auto"
+                                    DisplayMemberBinding="{Binding Playtime}" />
                 </GridView>
             </ListView.View>
         </ListView>
@@ -64,9 +73,10 @@
                            VerticalAlignment="Center"
                            FontSize="16" />
                     <TextBox x:Name="textBoxMovieTitle"
-                             Text="The Rise of Skywalker"
+                             Text="{Binding SelectedMovie.Title, Mode=OneWay}"
                              VerticalAlignment="Center"
                              FontSize="16"
+                             MinWidth="80"
                              BorderThickness="0"
                              IsReadOnly="True" />
                 </StackPanel>
@@ -76,9 +86,10 @@
                            VerticalAlignment="Center"
                            FontSize="16" />
                     <TextBox x:Name="textBoxMovieGenre"
-                             Text="Fantasy/Science-fiction"
+                             Text="{Binding SelectedMovie.Genre, Mode=OneWay}"
                              VerticalAlignment="Center"
                              FontSize="16"
+                             MinWidth="80"
                              BorderThickness="0"
                              IsReadOnly="True" />
                 </StackPanel>
@@ -92,7 +103,7 @@
                                 VerticalAlignment="Center"
                                 BorderThickness="0"
                                 IsEnabled="False"
-                                SelectedDate="2019-12-18" />
+                                SelectedDate="{Binding SelectedMovie.ReleaseDate, Mode=OneWay}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Height="50">
@@ -100,9 +111,10 @@
                            VerticalAlignment="Center"
                            FontSize="16" />
                     <TextBox x:Name="textBoxMovieLeadActor"
-                             Text="Daisy Ridley"
+                             Text="{Binding SelectedMovie.LeadActor}"
                              VerticalAlignment="Center"
                              FontSize="16"
+                             MinWidth="80"
                              BorderThickness="0"
                              IsReadOnly="True" />
                 </StackPanel>
@@ -112,11 +124,16 @@
                            VerticalAlignment="Center"
                            FontSize="16" />
                     <TextBox x:Name="textBoxMoviePlaytime"
-                             Text="141 minutes"
+                             Text="{Binding SelectedMovie.Playtime}"
                              VerticalAlignment="Center"
                              FontSize="16"
+                             MinWidth="80"
                              BorderThickness="0"
                              IsReadOnly="True" />
+                    <TextBlock Text="Minutes"
+                               VerticalAlignment="Center"
+                               FontSize="16"
+                               Opacity="0" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Margin="5"
@@ -128,7 +145,8 @@
                             Height="35"
                             Width="60"
                             Background="#f1f2f6"
-                            BorderBrush="#747d8c" />
+                            BorderBrush="#747d8c"
+                            Click="ButtonNewMovie_Click" />
                     <Button x:Name="buttonEditMovie"
                             Content="Edit"
                             Margin="5,0,5,0"
@@ -136,7 +154,8 @@
                             Height="35"
                             Width="60"
                             Background="#f1f2f6"
-                            BorderBrush="#747d8c" />
+                            BorderBrush="#747d8c"
+                            Click="ButtonEditMovie_Click" />
                     <Button x:Name="buttonSaveMovie"
                             Content="Save"
                             Margin="5,0,0,0"
@@ -210,8 +229,7 @@
                               HorizontalAlignment="Left"
                               Width="90"
                               Height="40"
-                              FontSize="16"
-                             >
+                              FontSize="16">
                         <ComboBoxItem Content="Action" />
                         <ComboBoxItem Content="Sci-fi" />
                         <ComboBoxItem Content="Fantasy" />
